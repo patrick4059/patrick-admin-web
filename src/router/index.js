@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Login from '../components/Login.vue'
+import Login from '../view/login.vue'
 
 const routes = [
   {path: '/', redirect: '/login'},
