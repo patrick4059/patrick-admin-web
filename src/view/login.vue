@@ -35,7 +35,7 @@
 import { encrypt } from '@/utils/rsaEncrypt'
 import Config from '@/settings'
 import Cookies from 'js-cookie'
-import Background from '@/assets/images/background.jpg'
+import Background from '@/assets/images/background1.jpg'
 
 export default {
   name: 'Login',
