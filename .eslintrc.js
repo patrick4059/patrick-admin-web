@@ -27,6 +27,7 @@ module.exports = {
       avoidEscape: true,
       allowTemplateLiterals: true
     }],
+    'template-curly-spacing': [2, 'never'],
     'spaced-comment': [2, 'always', {
       markers: ['global', 'globals', 'eslint', 'eslint-disable', '*package', '!', ',']
     }]
