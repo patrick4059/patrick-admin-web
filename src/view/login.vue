@@ -32,8 +32,9 @@
 </template>
 
 <script>
+import { encrypt } from '@/utils/rsaEncrypt'
 import Config from '@/settings'
-// import Cookies from 'js-cookie'
+import Cookies from 'js-cookie'
 import Background from '@/assets/images/background.jpg'
 
 export default {
@@ -70,47 +71,47 @@ export default {
   },
   created () {
     // 获取用户名密码等Cookie
-    // this.getCookie()
+    this.getCookie()
   },
   methods: {
-    // getCookie() {
-    //   const username = Cookies.get('username')
-    //   let password = Cookies.get('password')
-    //   const rememberMe = Cookies.get('rememberMe')
-    //   // 保存cookie里面的加密后的密码
-    //   this.cookiePass = password === undefined ? '' : password
-    //   password = password === undefined ? this.loginForm.password : password
-    //   this.loginForm = {
-    //     username: username === undefined ? this.loginForm.username : username,
-    //     password: password,
-    //     rememberMe: rememberMe === undefined ? false : Boolean(rememberMe),
-    //     code: ''
-    //   }
-    // },
+    getCookie() {
+      const username = Cookies.get('username')
+      let password = Cookies.get('password')
+      const rememberMe = Cookies.get('rememberMe')
+      // 保存cookie里面的加密后的密码
+      this.cookiePass = password === undefined ? '' : password
+      password = password === undefined ? this.loginForm.password : password
+      this.loginForm = {
+        username: username === undefined ? this.loginForm.username : username,
+        password: password,
+        rememberMe: rememberMe === undefined ? false : Boolean(rememberMe),
+        code: ''
+      }
+    },
     handleLogin () {
-      this.$router.push({ path: this.redirect || '/dashboard' })
-      // this.$refs.loginForm.validate(valid => {
-        // const user = {
-        //   username: this.loginForm.username,
-        //   password: this.loginForm.password,
-        //   rememberMe: this.loginForm.rememberMe,
-        //   code: this.loginForm.code,
-        //   uuid: this.loginForm.uuid
-        // }
-        // if (user.password !== this.cookiePass) {
-        //   user.password = encrypt(user.password)
-        // }
-        // if (valid) {
-        //   this.loading = true
-          // if (user.rememberMe) {
-          //   Cookies.set('username', user.username, { expires: Config.passCookieExpires })
-          //   Cookies.set('password', user.password, { expires: Config.passCookieExpires })
-          //   Cookies.set('rememberMe', user.rememberMe, { expires: Config.passCookieExpires })
-          // } else {
-          //   Cookies.remove('username')
-          //   Cookies.remove('password')
-          //   Cookies.remove('rememberMe')
-          // }
+      this.$refs.loginForm.validate(valid => {
+        const user = {
+          username: this.loginForm.username,
+          password: this.loginForm.password,
+          rememberMe: this.loginForm.rememberMe,
+          code: this.loginForm.code,
+          uuid: this.loginForm.uuid
+        }
+        if (user.password !== this.cookiePass) {
+          user.password = encrypt(user.password)
+        }
+        if (valid) {
+          this.loading = true
+          if (user.rememberMe) {
+            Cookies.set('username', user.username, { expires: Config.passCookieExpires })
+            Cookies.set('password', user.password, { expires: Config.passCookieExpires })
+            Cookies.set('rememberMe', user.rememberMe, { expires: Config.passCookieExpires })
+          } else {
+            Cookies.remove('username')
+            Cookies.remove('password')
+            Cookies.remove('rememberMe')
+          }
+          this.$router.push({ path: this.redirect || '/dashboard' })
           // this.$store.dispatch('Login', user).then(() => {
           //   this.loading = false
           //   this.$router.push({ path: this.redirect || '/' })
@@ -118,11 +119,11 @@ export default {
           //   this.loading = false
           //   this.getCode()
           // })
-        // } else {
-        //   console.log('error submit!!')
-        //   return false
-        // }
-      // })
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
     }
   }
 }

@@ -12,6 +12,8 @@
     "core-js": "^3.8.3",
     "element-plus": "^2.3.7",
     "element-ui": "^2.15.13",
+    "js-cookie": "^3.0.5",
+    "jsencrypt": "^3.3.2",
     "node-sass": "^4.14.1",
     "sass-loader": "^13.3.2",
     "vue": "^3.2.13",
