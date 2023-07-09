@@ -37,7 +37,7 @@
     import Cookies from 'js-cookie'
     import Background from '@/assets/images/background1.jpg'
 
-    import axios from 'axios'
+    import request from '@/utils/request'
 
     export default {
         name: 'Login',
@@ -115,8 +115,12 @@
                         }
                         // this.$router.push({ path: this.redirect || '/dashboard' })
                         //   this.$store.dispatch('Login', user)
-                        axios({
-                            url: 'http://localhost:8089/queryUsers',
+                        // axios({
+                        //     url: 'http://localhost:8089/queryUsers',
+                        //     method: 'post'
+                        // })
+                        request({
+                            url: 'auth/queryUsers',
                             method: 'post'
                         })
                         // this.$store.dispatch('Login', user).then(() => {

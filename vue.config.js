@@ -5,6 +5,7 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
+const port = 8089 // 端口配置
 module.exports = defineConfig({
   transpileDependencies: true,
   lintOnSave: false,
@@ -25,5 +26,26 @@ module.exports = defineConfig({
         symbolId: 'icon-[name]'
       })
       .end()
+  },
+  devServer: {
+    // 配置代理解决跨域问题
+    port: port,
+    open: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8089/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': 'api'
+        }
+      },
+      '/auth': {
+        target: 'http://localhost:8089/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/auth': 'auth'
+        }
+      }
+    }
   }
 })
