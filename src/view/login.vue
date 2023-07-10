@@ -16,6 +16,7 @@
         <el-input v-model="loginForm.code" auto-complete="off" placeholder="验证码" style="width: 63%"
                   @keyup.enter="handleLogin"/>
         <div class="login-code">
+          <img :src="codeUrl" @click="getCode">
         </div>
       </el-form-item>
       <el-checkbox v-model="loginForm.rememberMe" style="margin:0 0 25px 0;">
@@ -36,12 +37,14 @@
     import Config from '@/settings'
     import Cookies from 'js-cookie'
     import Background from '@/assets/images/background1.jpg'
+    import { getCodeImg } from '@/api/login'
 
     export default {
         name: 'Login',
         data() {
             return {
                 Background: Background,
+                codeUrl: '',
                 loginForm: {
                     username: 'admin',
                     password: '123456',
@@ -72,8 +75,16 @@
         created() {
             // 获取用户名密码等Cookie
             this.getCookie()
+            // 获取验证码
+            this.getCode()
         },
         methods: {
+            getCode() {
+                getCodeImg().then(res => {
+                    this.codeUrl = res.data.img
+                    this.loginForm.uuid = res.data.uuid
+                })
+            },
             getCookie() {
                 const username = Cookies.get('username')
                 let password = Cookies.get('password')
