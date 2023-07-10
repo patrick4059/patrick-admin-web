@@ -1,9 +1,9 @@
 import { login, getInfo, logout } from '@/api/login'
-import { getToken, setToken, removeToken } from '@/utils/auth'
+// import { getToken, setToken, removeToken } from '@/utils/auth'
 
 const user = {
   state: {
-    token: getToken(),
+    // token: getToken(),
     user: {},
     roles: [],
     // 第一次加载菜单时用到
@@ -28,17 +28,18 @@ const user = {
   actions: {
     // 登录
     Login({ commit }, userInfo) {
-      const rememberMe = userInfo.rememberMe
+      // const rememberMe = userInfo.rememberMe
       return new Promise((resolve, reject) => {
         login(userInfo.username, userInfo.password, userInfo.code, userInfo.uuid).then(res => {
-          setToken(res.token, rememberMe)
-          debugger
-          commit('SET_TOKEN', res.token)
-          setUserInfo(res.user, commit)
+          // setToken(res.token, rememberMe)
+          // commit('SET_TOKEN', res.token)
+          // setUserInfo(res.user, commit)
           // 第一次加载菜单时用到， 具体见 src 目录下的 permission.js
-          commit('SET_LOAD_MENUS', true)
+          // commit('SET_LOAD_MENUS', true)
+          console.log('111111111111111')
           resolve()
         }).catch(error => {
+          console.log('2222222222222')
           reject(error)
         })
       })
@@ -46,26 +47,26 @@ const user = {
 
     // 获取用户信息
     GetInfo({ commit }) {
-      return new Promise((resolve, reject) => {
-        getInfo().then(res => {
-          setUserInfo(res, commit)
-          resolve(res)
-        }).catch(error => {
-          reject(error)
-        })
-      })
+      // return new Promise((resolve, reject) => {
+      //   getInfo().then(res => {
+      //     setUserInfo(res, commit)
+      //     resolve(res)
+      //   }).catch(error => {
+      //     reject(error)
+      //   })
+      // })
     },
     // 登出
     LogOut({ commit }) {
-      return new Promise((resolve, reject) => {
-        logout().then(res => {
-          logOut(commit)
-          resolve()
-        }).catch(error => {
-          logOut(commit)
-          reject(error)
-        })
-      })
+      // return new Promise((resolve, reject) => {
+      //   logout().then(res => {
+      //     logOut(commit)
+      //     resolve()
+      //   }).catch(error => {
+      //     logOut(commit)
+      //     reject(error)
+      //   })
+      // })
     },
 
     updateLoadMenus({ commit }) {
@@ -79,7 +80,7 @@ const user = {
 export const logOut = (commit) => {
   commit('SET_TOKEN', '')
   commit('SET_ROLES', [])
-  removeToken()
+  // removeToken()
 }
 
 export const setUserInfo = (res, commit) => {
