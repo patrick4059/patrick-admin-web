@@ -81,8 +81,8 @@
         methods: {
             getCode() {
                 getCodeImg().then(res => {
-                    this.codeUrl = res.data.img
-                    this.loginForm.uuid = res.data.uuid
+                    this.codeUrl = res.img
+                    this.loginForm.uuid = res.uuid
                 })
             },
             getCookie() {
