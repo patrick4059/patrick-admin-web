@@ -46,14 +46,15 @@ const user = {
 
     // 获取用户信息
     GetInfo({ commit }) {
-      // return new Promise((resolve, reject) => {
-      //   getInfo().then(res => {
-      //     setUserInfo(res, commit)
-      //     resolve(res)
-      //   }).catch(error => {
-      //     reject(error)
-      //   })
-      // })
+      debugger
+      return new Promise((resolve, reject) => {
+        getInfo().then(res => {
+          setUserInfo(res, commit)
+          resolve(res)
+        }).catch(error => {
+          reject(error)
+        })
+      })
     },
     // 登出
     LogOut({ commit }) {

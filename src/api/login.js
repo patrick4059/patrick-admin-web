@@ -14,6 +14,7 @@ export function login(username, password, code, uuid) {
 }
 
 export function getInfo() {
+  debugger
   return request({
     url: 'auth/info',
     method: 'get'
