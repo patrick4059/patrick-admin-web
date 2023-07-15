@@ -16,7 +16,8 @@
     "jsencrypt": "^3.3.2",
     "node-sass": "^4.14.1",
     "nprogress": "^0.2.0",
-    "sass-loader": "^13.3.2",
+    "sass": "^1.63.6",
+    "sass-loader": "^7.1.0",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
     "vuex": "latest"

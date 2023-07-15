@@ -1,7 +1,7 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <div>
+  <div class="dashboard-container">
+    <div class="dashboard-editor-container">
+      <h1>Welcome to Your Vue.js App</h1>
     </div>
   </div>
 </template>

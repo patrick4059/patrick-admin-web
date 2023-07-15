@@ -47,5 +47,12 @@ module.exports = defineConfig({
         }
       }
     }
+  },
+  css: {
+    loaderOptions: {
+      scss: {
+        prependData: `@import "./src/assets/styles/variables.scss";`
+      }
+    }
   }
 })

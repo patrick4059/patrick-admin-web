@@ -6,6 +6,7 @@ import 'element-plus/dist/index.css'
 
 // 导入全局样式表
 import './assets/css/global.css'
+import './assets/styles/index.scss'
 
 // 路由权限控制
 import './router/index'
