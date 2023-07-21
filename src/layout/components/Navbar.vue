@@ -3,12 +3,10 @@
     <hamburger id="hamburger-container" :is-active="true" class="hamburger-container" @toggleClick="toggleSideBar"/>
 
     <div class="right-menu">
-      <el-dropdown :hide-on-click="false">
-        <span class="el-dropdown-link">
-          <el-icon class="el-icon--right">
-            <el-button>设置</el-button>
-          </el-icon>
-        </span>
+      <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
+        <div class="avatar-wrapper">
+          <img src="@/assets/images/avatar.png" class="user-avatar">
+        </div>
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item>布局设置</el-dropdown-item>
@@ -47,6 +45,7 @@
                     type: 'warning'
                 }).then(() => {
                     this.logout()
+                }).catch(() => {
                 })
             },
             logout() {
