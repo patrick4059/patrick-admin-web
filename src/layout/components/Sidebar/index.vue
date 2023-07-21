@@ -3,14 +3,17 @@
     <logo/>
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
+        :default-active="activeMenu"
+        :collapse= false
+        :unique-opened=true
         :background-color="variables.menuBg"
+        :active-text-color="variables.menuActiveText"
+        :collapse-transition="false"
         :text-color="variables.menuText">
-        <el-menu-item>首页</el-menu-item>
-        <el-menu-item>系统管理</el-menu-item>
-        <el-menu-item>系统工具</el-menu-item>
-        <el-menu-item>组件管理</el-menu-item>
-        <el-menu-item>菜单管理</el-menu-item>
-        <el-menu-item>自定义系统</el-menu-item>
+        <el-menu-item index="1">
+          <el-icon><icon-menu /></el-icon>
+          <template #title>Navigator Two</template>
+        </el-menu-item>
       </el-menu>
     </el-scrollbar>
   </div>
@@ -22,6 +25,12 @@
     import SidebarItem from './SidebarItem'
 
     export default {
+        data() {
+            return {
+                activeMenu: '1',
+                sidebarRouters: []
+            }
+        },
         components: {
             SidebarItem,
             Logo

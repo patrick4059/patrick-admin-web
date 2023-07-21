@@ -12,3 +12,7 @@ export function setToken(token, rememberMe) {
     return Cookies.set(TokenKey, token, { expires: Config.tokenCookieExpires })
   } else return Cookies.set(TokenKey, token)
 }
+
+export function removeToken() {
+  return Cookies.remove(TokenKey)
+}

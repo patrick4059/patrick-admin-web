@@ -1,5 +1,5 @@
 import { login, getInfo, logout } from '@/api/login'
-import { getToken, setToken, removeToken } from '@/utils/auth'
+import { setToken, removeToken } from '@/utils/auth'
 
 const user = {
   state: {
@@ -58,15 +58,15 @@ const user = {
     },
     // 登出
     LogOut({ commit }) {
-      // return new Promise((resolve, reject) => {
-      //   logout().then(res => {
-      //     logOut(commit)
-      //     resolve()
-      //   }).catch(error => {
-      //     logOut(commit)
-      //     reject(error)
-      //   })
-      // })
+      return new Promise((resolve, reject) => {
+        logout().then(res => {
+          logOut(commit)
+          resolve()
+        }).catch(error => {
+          logOut(commit)
+          reject(error)
+        })
+      })
     },
 
     updateLoadMenus({ commit }) {
@@ -80,7 +80,7 @@ const user = {
 export const logOut = (commit) => {
   commit('SET_TOKEN', '')
   commit('SET_ROLES', [])
-  // removeToken()
+  removeToken()
 }
 
 export const setUserInfo = (res, commit) => {
